@@ -1,0 +1,41 @@
+#__layout {
+  /*direction: rtl;*/
+  font-family: 'Cairo', sans-serif!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#__layout *{
+  font-family: 'Cairo', sans-serif!important;
+}
+
+html, body, #app, #login, .login {
+  height: 100%;
+}
+
+html, body {
+  font-family: 'Cairo', sans-serif!important;
+  margin: 0;
+  height: 100%;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  bottom: 55px;
+  width: 100%;
+  background-color: white;
+}
+
+.copyright {
+  background-color: #0d4168;
+  width: 100%;
+  padding: 0;
+  bottom: 0;
+}
+
+.footer-copyright {
+  color: white;
+}
