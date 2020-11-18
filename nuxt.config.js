@@ -93,8 +93,7 @@ export default {
     "~/assets/css/bootstrap.css",
     'vue-slick-carousel/dist/vue-slick-carousel.css'
   ],
-
-
+  
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     {src: './plugins/vue-slick-carousel.js'},
@@ -103,7 +102,6 @@ export default {
     { src: '~/plugins/amplify.js', mode: 'client' }
 
   ],
-
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
