@@ -133,7 +133,6 @@
                     (v) => !isNaN(v) || 'يجب أن يكون أرقام',
                     (v) => v.length === 11 || 'يجب أن يكون رقم صحيح',
                     (v) => validatePhone(v) || 'يجب أن يكون رقم صحيح',
-
                   ]"
                   label="رقم الموبايل"
                   required
@@ -165,6 +164,7 @@
                   :rules="[
                     (v) => !!v || 'رقم الموبايل مطلوب',
                     (v) => !isNaN(v) || 'يجب أن يكون أرقام',
+                    (v) => v.length === 11 || 'يجب أن يكون رقم صحيح',
                     (v) => validatePhone(v) || 'يجب أن يكون رقم صحيح',
                   ]"
                   dense
@@ -311,7 +311,6 @@ export default {
   },
   methods: {
     validatePhone(v) {
-      console.log(v)
       return v.startsWith('012') || v.startsWith('011') || v.startsWith('010') || v.startsWith('015')
     },
     get_avatar() {

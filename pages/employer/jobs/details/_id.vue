@@ -695,7 +695,7 @@
               <v-col cols="11" class="ml-auto mr-auto">
                 <!-- Shaghalni Logo -->
                 <div style="position: absolute; top: 0; left: 12px">
-                  <img src="~/assets/img/shag-badge.png" width="140" />
+                  <img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" width="140" />
                 </div>
 
                 <div class="job-holder">
@@ -1585,7 +1585,7 @@
               <v-col cols="11" class="ml-auto mr-auto">
                 <!-- Shaghalni Logo -->
                 <div style="position: absolute; top: 0; left: 12px">
-                  <img src="~/assets/img/shag-badge.png" width="140" />
+                  <img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" width="140" />
                 </div>
 
                 <div class="job-holder">
@@ -1873,16 +1873,12 @@
   </div>
 </template>
 <script>
-// if (process.client) {
-// import ApexChart from "vue-apexcharts";
-// }
 import { mdiChevronDown, mdiLockOpenOutline, mdiThumbUpOutline } from "@mdi/js";
 
 export default {
   middleware: "auth-employer",
 
   components: {
-    GChart,
     Apexcharts: () => import("vue-apexcharts"),
   },
   data() {
@@ -1958,7 +1954,7 @@ export default {
       job: {},
       application_statuses: {},
       employer: {},
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       thumb_avatar:
         "https://www.yourfirstpatient.com/assets/default-user-avatar-thumbnail@2x-ad6390912469759cda3106088905fa5bfbadc41532fbaa28237209b1aa976fc9.png",
       storage_url: process.env.StorageUrl,
@@ -1989,8 +1985,6 @@ export default {
   },
   watch: {
     chart() {
-      console.log("here");
-      console.log(this.chart);
       this.series = [
         {
           name: "المشاهدات",

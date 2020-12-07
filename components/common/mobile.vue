@@ -3,7 +3,7 @@
     <v-col md="6" class="mobile-container ml-auto mr-auto">
       <v-row>
         <img
-          src="../../assets/mobile-mockup.png"
+          src="../../assets/mobile-mockup.png?webp"
           style="width: 100%; height: 100%; z-index: 999999"
         />
 
@@ -30,7 +30,7 @@
                 <div class="d-flex flex-column">
                   <v-avatar>
                     <img
-                      src="https://s3-cdn.shaghalni.com/shaghalni_icon.png"
+                      src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png"
                       alt="Shaghalni"
                     />
                   </v-avatar>

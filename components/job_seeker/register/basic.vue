@@ -159,7 +159,6 @@ export default {
       this.$axios
         .get("/resource/" + resourceName, { params: { type: type } })
         .then((response) => {
-          console.log(response.data);
           return response.data;
         });
     },

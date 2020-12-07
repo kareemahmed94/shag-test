@@ -31,15 +31,63 @@
   export default {
     name: 'default',
     props: ['append_class'],
+    head() {
+      return {
+        title: this.settings ? this.settings.title : "",
+        meta: [
+          // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+          {
+            hid: "description",
+            name: "description",
+            content: this.settings ? this.settings.description : "",
+          },
+          {
+            hid: "keywords",
+            name: "keywords",
+            content: this.settings ? this.settings.keywords : "",
+          },
+          {
+            hid: "twitter:title",
+            name: "twitter:title",
+            content: this.settings ? this.settings.meta_title : "",
+          },
+          {
+            hid: "twitter:description",
+            name: "twitter:description",
+            content: this.settings ? this.settings.meta_description : "",
+          },
+          {
+            hid: "twitter:image",
+            name: "twitter:image",
+            content: this.settings ? this.settings.meta_image : "",
+          },
+          {
+            hid: "og:title",
+            name: "og:title",
+            content: this.settings ? this.settings.meta_title : "",
+          },
+          {
+            hid: "og:description",
+            name: "og:description",
+            content: this.settings ? this.settings.meta_description : "",
+          },
+          {
+            hid: "og:url",
+            name: "og:url",
+            content: this.$route.fullPath,
+          },
+          {
+            hid: "og:image",
+            name: "og:image",
+            content: this.settings ? this.settings.meta_image : "",
+          },
+        ],
+      };
+    },
     components: {
       FooterBar,
       NavBar,
       LoginModal,
-    },
-    mounted() {
-      this.loading = false
-      this.check_class();
-      this.last_active();
     },
     data() {
       return {
@@ -52,6 +100,7 @@
         color: '#0d4168',
         size: '20px',
         home_class: '',
+        settings: this.$store.state.settings,
         nav_cover:''
       }
     },
@@ -59,6 +108,11 @@
       '$route.path': function () {
         this.check_class()
       }
+    },
+    mounted() {
+      this.loading = false
+      this.check_class();
+      this.last_active();
     },
     methods: {
       last_active() {

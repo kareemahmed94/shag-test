@@ -36,7 +36,7 @@
                 <div class="d-flex flex-column">
                   <v-avatar>
                     <img
-                      src="https://s3-cdn.shaghalni.com/shaghalni_icon.png"
+                      src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png"
                       alt="Shaghalni"
                     />
                   </v-avatar>

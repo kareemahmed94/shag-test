@@ -4,7 +4,7 @@
       <div class="">
         <VueSlickCarousel v-bind="specialOptions" ref="slick" v-if="!special_jobs_loaded">
           <div v-for="x in sample_slider" :key="'s'+x">
-            <img src="~/assets/img/slider-loader.png" width="200">
+            <img src="~/assets/img/slider-loader.png?webp" width="200">
           </div>
         </VueSlickCarousel>
         <VueSlickCarousel v-bind="specialOptions" ref="slick" v-else>
@@ -12,11 +12,11 @@
             <div class="reviews-slider">
               <div class="slider-content-jobs">
                 <nuxt-link :to="'/employer/'+special_job.employer.slug" v-if="special_job.employer">
-                  <img width="200" :src="special_job.employer.logo ? storage_url+special_job.employer.logo : thumb_logo">
+                  <img width="200" :src="special_job.employer.logo ? storage_url+special_job.employer.logo+'?webp' : thumb_logo+'?webp'">
                 </nuxt-link>
 
                 <nuxt-link to="#" v-else>
-                  <img width="200" :src="thumb_logo">
+                  <img width="200" :src="thumb_logo+'?webp'">
                 </nuxt-link>
 
                 <hr>
@@ -110,7 +110,7 @@
         },
         sample_slider: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         storage_url: process.env.StorageUrl,
-        thumb_logo: 'https://s3-cdn.shaghalni.com/shaghalni_icon.png',
+        thumb_logo: 'https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png',
       }
     },
     mounted() {

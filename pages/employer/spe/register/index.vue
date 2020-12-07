@@ -70,7 +70,12 @@
                   <v-text-field
                     dense
                     label="رقم الموبايل"
-                    :rules="[(v) => !!v || 'رقم الموبايل مطلوب']"
+                    :rules="[
+                    (v) => !!v || 'رقم الموبايل مطلوب',
+                    (v) => !isNaN(v) || 'يجب أن يكون أرقام',
+                    (v) => v.length === 11 || 'يجب أن يكون رقم صحيح',
+                    (v) => validatePhone(v) || 'يجب أن يكون رقم صحيح',
+                  ]"
                     v-model="phone_number"
                     outlined
                     required
@@ -530,6 +535,174 @@
         </v-card>
       </v-dialog>
     </v-row>
+    <v-dialog v-model="verify_dialog" persistent width="600">
+      <v-card>
+        <v-row class="mb-4">
+          <v-col md="12" class="logo-holder-modal text-center">
+            <img class="mt-6 mb-6" src="~/assets/logo-blue.png" width="200" />
+          </v-col>
+        </v-row>
+
+        <v-row style="width: 100%">
+          <v-col md="12" cols="12">
+            <div class="verify-wrapper">
+              <h3 class="message-body">
+                تم إرسال رسالة إلى رقم الهاتف برجاء التأكيد
+              </h3>
+              <v-row>
+                <v-col md="12" cols="11">
+                  <div class="verify-dialog" style="width: 100%">
+                    <v-row class="verify-form">
+                      <v-col md="12" cols="12">
+                        <input
+                          class="ma-0"
+                          :style="`${
+                            $device.isMobile
+                              ? 'padding: 0; font-size: 14px'
+                              : ''
+                          }`"
+                          type="text"
+                          ref="first_input"
+                          maxlength="1"
+                          size="1"
+                          min="0"
+                          max="1"
+                          pattern="[0-9]{1}"
+                          @keyup="focus_next"
+                          onclick="this.setSelectionRange(0, this.value.length)"
+                        />
+
+                        <input
+                          class="ma-0"
+                          :style="`${
+                            $device.isMobile
+                              ? 'padding: 0; font-size: 14px'
+                              : ''
+                          }`"
+                          type="text"
+                          maxlength="1"
+                          size="1"
+                          min="0"
+                          max="1"
+                          pattern="[0-9]{1}"
+                          @keyup="focus_next"
+                          onclick="this.setSelectionRange(0, this.value.length)"
+                        />
+
+                        <input
+                          class="ma-0"
+                          :style="`${
+                            $device.isMobile
+                              ? 'padding: 0; font-size: 14px'
+                              : ''
+                          }`"
+                          type="text"
+                          maxlength="1"
+                          size="1"
+                          min="0"
+                          max="1"
+                          pattern="[0-9]{1}"
+                          @keyup="focus_next"
+                          onclick="this.setSelectionRange(0, this.value.length)"
+                        />
+
+                        <input
+                          class="ma-0"
+                          :style="`${
+                            $device.isMobile
+                              ? 'padding: 0; font-size: 14px'
+                              : ''
+                          }`"
+                          type="text"
+                          maxlength="1"
+                          size="1"
+                          min="0"
+                          max="1"
+                          pattern="[0-9]{1}"
+                          @keyup="focus_next"
+                          onclick="this.setSelectionRange(0, this.value.length)"
+                        />
+
+                        <input
+                          :style="`${
+                            $device.isMobile
+                              ? 'padding: 0; font-size: 14px'
+                              : ''
+                          }`"
+                          type="text"
+                          maxlength="1"
+                          size="1"
+                          min="0"
+                          max="1"
+                          pattern="[0-9]{1}"
+                          @keyup="focus_next"
+                          onclick="this.setSelectionRange(0, this.value.length)"
+                        />
+
+                        <input
+                          class="ma-0"
+                          :style="`${
+                            $device.isMobile
+                              ? 'padding: 0; font-size: 14px'
+                              : ''
+                          }`"
+                          type="text"
+                          maxlength="1"
+                          size="1"
+                          min="0"
+                          max="1"
+                          pattern="[0-9]{1}"
+                          @keyup="focus_next"
+                          onclick="this.setSelectionRange(0, this.value.length)"
+                        />
+                      </v-col>
+
+                      <v-col md="12" cols="12">
+                        <v-btn
+                          color="primary"
+                          light
+                          large
+                          shaped
+                          :loading="v_loading"
+                          @click="verify_code"
+                        >تأكيد</v-btn
+                        >
+                      </v-col>
+                    </v-row>
+                    <v-row class="message-body">
+                      <v-col md="12" cols="12">
+                        <div class="block_resend" v-if="verify_message">
+                          {{ verify_message }}
+                        </div>
+                      </v-col>
+                    </v-row>
+                    <v-row class="message-body">
+                      <v-col md="12" cols="12">لم يتم إرسال الرسالة؟</v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col md="6" v-if="block_resend == 0">
+                        <a href="#" @click="resend_code">إعادة إرسال الكود</a>
+                      </v-col>
+                      <v-col md="6" v-else>
+                        <a href="#">تم الإرسال</a>
+                        <div class="block_resend">
+                          برجاء الإنتظار
+                          <span></span> ثانية
+                        </div>
+                      </v-col>
+                      <v-col md="6">
+                        <a href="#" @click="change_phone">تغيير رقم الهاتف</a>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </v-col>
+              </v-row>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-dialog>
+
   </div>
 </template>
 <script>
@@ -650,7 +823,9 @@ export default {
       interview_from_time: "",
       interview_to_time: "",
       // Employer Options
+      verify_dialog: false,
       min_date: "",
+      spe: {},
       categories: [],
       cities: [],
       packages: [],
@@ -665,7 +840,11 @@ export default {
       selected_package: null,
       user: {},
       user_data: {},
+      block_resend: 0,
       v_loading: false,
+      verify_message: "",
+      verify_modal: false,
+      payment_type: "",
     };
   },
   watch: {
@@ -689,6 +868,79 @@ export default {
   mounted() {
   },
   methods: {
+    validatePhone(v) {
+      return v.startsWith('012') || v.startsWith('011') || v.startsWith('010') || v.startsWith('015')
+    },
+    //verify
+    get_verification_code() {
+      let inputs = $(".verify-form input");
+      let code = "";
+      for (let x = 0; x < inputs.length; x++) {
+        code += inputs[x].value;
+      }
+      return code;
+    },
+    focus_next(e) {
+      var t = $(e.target);
+      t.next("input").focus();
+    },
+    verify_code() {
+      this.v_loading = true;
+      let verification_code = this.get_verification_code();
+      if (verification_code.length == 6) {
+        this.$axios
+          .post("/twilio_verify/verify_code", {
+            verification_code: verification_code,
+            spe_id: this.spe.id,
+          })
+          .then((response) => {
+            this.v_loading = false;
+            if (response.data.status == 200) {
+              this.message = true;
+              this.error_type = "success";
+              this.error_message = response.data.msg;
+              this.verify_dialog = false
+              this.getPayment()
+            } else {
+              this.message = true;
+              this.error_type = "error";
+              this.error_message = response.data.msg;
+            }
+          });
+      }
+    },
+    resend_code() {
+      this.$axios
+        .post("/twilio_verify/resend_code", {
+          spe_id : this.spe.id,
+        })
+        .then((response) => {
+          let vm = this;
+          if (response.data.status == 200) {
+            vm.block_resend = 1;
+            this.message = true;
+            this.error_type = "success";
+            this.error_message = response.data.msg;
+            var count = 60,
+              timer = setInterval(function () {
+                $(".block_resend span").html(count--);
+                if (count == 0) {
+                  vm.block_resend = 0;
+                  clearInterval(timer);
+                }
+              }, 1000);
+          } else {
+            this.message = true;
+            this.error_type = "error";
+            this.error_message = "حدثت مشكلة برجاء المحاولة مرة أخرى";
+          }
+        });
+    },
+    change_phone() {
+      this.verify_dialog = false
+      this.change_phone_num = 1;
+    },
+
     getPackages() {
       this.$axios.get("/employer/packages?is_SP=1").then((response) => {
         this.packages = response.data.data;
@@ -704,6 +956,7 @@ export default {
       }
     },
     store_spe(payment_type) {
+      this.payment_type = payment_type
       if (payment_type == 'cash') {
         if (!this.address_details.floor || !this.address_details.street || !this.address_details.building || !this.address_details.apartment) {
           this.message = true;
@@ -740,35 +993,60 @@ export default {
         this.$axios.post("/employer/spes", form_data).then((response) => {
           this.btn_loader = false;
           this.overlay = false;
-          if (response.data.status == 500) {
+          if (response.data.error_code == 500) {
             this.message = true;
             this.error_type = "error";
-            this.error_message = response.data.message;
+            this.error_message = response.data.msg;
             return;
           }
-          let selected_city =
-            this.cities.filter((city) => {
-              return city.id == this.city_id ? city : null;
-            })[0].name_ar || null;
-          let selected_category =
-            this.categories.filter((category) => {
-              return category.id == this.category_id ? category : null;
-            })[0].name_ar || null;
-          if (process.browser) {
-            if (response.data.url) {
-              localStorage.setItem("iframe_url", response.data.url);
-            } else {
-              localStorage.removeItem('iframe_url')
-            }
-            localStorage.setItem("package_id", this.package_id);
-            localStorage.setItem("employer_name", this.employer_name);
-            localStorage.setItem("address", this.address);
-            localStorage.setItem("job_title", selected_category);
-            localStorage.setItem("area", selected_city);
-            localStorage.setItem("phone_number", this.sms_phone_number);
-          }
-          this.$router.push("/employer/spe/payment");
+          this.payment_select_dialog = false
+          this.verify_dialog = true
+          this.message = true;
+          this.error_type = "success";
+          this.error_message = response.data.msg;
+          this.spe = response.data.data;
         });
+    },
+
+    getPayment() {
+      this.overlay = true;
+      this.$axios.post("/employer/spes/get_payment", {
+        package_id: this.package_id,
+        payment_type: this.payment_type,
+        address_details: this.address_details,
+        spe_id: this.spe.id
+      }).then((response) => {
+        this.btn_loader = false;
+        this.overlay = false;
+        if (response.data.status == 500) {
+          this.message = true;
+          this.error_type = "error";
+          this.error_message = response.data.message;
+          return;
+        }
+        let selected_city =
+          this.cities.filter((city) => {
+            return city.id == this.city_id ? city : null;
+          })[0].name_ar || null;
+        let selected_category =
+          this.categories.filter((category) => {
+            return category.id == this.category_id ? category : null;
+          })[0].name_ar || null;
+        if (process.browser) {
+          if (response.data.url) {
+            localStorage.setItem("iframe_url", response.data.url);
+          } else {
+            localStorage.removeItem('iframe_url')
+          }
+          localStorage.setItem("package_id", this.package_id);
+          localStorage.setItem("employer_name", this.employer_name);
+          localStorage.setItem("address", this.address);
+          localStorage.setItem("job_title", selected_category);
+          localStorage.setItem("area", selected_city);
+          localStorage.setItem("phone_number", this.sms_phone_number);
+        }
+        this.$router.push("/employer/spe/payment");
+      });
 
     },
     getCategories() {

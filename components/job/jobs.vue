@@ -4,14 +4,14 @@
   <div v-if="!$device.isMobileOrTablet">
     <v-col cols="11" md="12" style="margin-left: auto; margin-right: auto">
       <div v-if="status == 1">
-        <img src="~/assets/img/loader.png" style="width: 100%" />
+        <img src="~/assets/img/loader.png?webp" style="width: 100%" />
       </div>
       <div v-else-if="status == 2">
         <div :class="job.employer ? 'job-holder' : ''" v-for="(job,index) in jobs" :key="job.id">
           <v-row v-if="job.employer">
             <div v-if="index==0">
               <div style="position: absolute; top: 0; left: 12px">
-                <v-img src="/_nuxt/assets/img/shag-badge.png" max-width="140"></v-img>
+                <v-img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" max-width="140"></v-img>
               </div>
             </div>
             <v-col cols="4" md="3">
@@ -22,9 +22,9 @@
                 >
                   <v-img
                     aspect-ratio="1"
-                    :src="job.employer.logo ? storage_url+job.employer.logo : thumb_logo"
+                    :src="job.employer.logo ? storage_url+job.employer.logo+'?webp' : thumb_logo+'?webp'"
                   ></v-img>
-                  <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                  <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
                 </div>
               </nuxt-link>
             </v-col>
@@ -143,7 +143,7 @@
         </div>
       </div>
       <div class="no-data-placeholder" v-else-if="status == 3">
-        <img src="~/assets/img/icons/job-icon.png" width="200" />
+        <img src="~/assets/img/icons/job-icon.png?webp" width="200" />
         <div class="no-data-text job-details-title text-center">
           <span style="font-size: 18px;">لا توجد وظائف</span>
         </div>
@@ -156,7 +156,7 @@
     <v-col cols="11" class="ml-auto mr-auto">
       <!-- StillLoadingStatus -->
       <div v-if="status == 1">
-        <img src="~/assets/img/loader.png" style="width: 100%" />
+        <img src="~/assets/img/loader.png?webp" style="width: 100%" />
       </div>
       <!-- /StillLoadingStatus -->
 
@@ -166,7 +166,7 @@
           <!-- ShaghalniLogo -->
           <div v-if="index === 0">
             <div style="position: absolute; top: 0; left: 12px">
-              <v-img src="/_nuxt/assets/img/shag-badge.png" max-width="140"></v-img>
+              <v-img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" max-width="140"></v-img>
             </div>
           </div>
           <!-- /ShaghalniLogo -->
@@ -176,9 +176,9 @@
                 <div class="logo-mask ml-auto mr-auto">
                   <v-img
                     aspect-ratio="1"
-                    :src="job.employer.logo ? storage_url+job.employer.logo : thumb_logo"
+                    :src="job.employer.logo ? storage_url+job.employer.logo+'?webp' : thumb_logo+'?webp'"
                   ></v-img>
-                  <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                  <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
                 </div>
               </nuxt-link>
             </v-col>
@@ -329,7 +329,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$refs.address739);
   },
   computed: {
     parseObj(obj) {

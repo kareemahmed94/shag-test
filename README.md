@@ -1,4 +1,6 @@
-# test-shag
+# shagFEnuxt
+
+> My spectacular Nuxt.js project
 
 ## Build Setup
 

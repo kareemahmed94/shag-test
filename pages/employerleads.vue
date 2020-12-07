@@ -90,7 +90,7 @@
     data() {
       return {
         is_mobile: this.$device ? this.$device.isMobile : false,
-        thumb_logo: 'https://s3-cdn.shaghalni.com/shaghalni_icon.png',
+        thumb_logo: 'https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png',
         storage_url: process.env.StorageUrl,
         email: '',
         first_name: '',

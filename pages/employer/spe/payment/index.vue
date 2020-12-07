@@ -182,7 +182,6 @@ export default {
       this.$axios
         .get("/employer/packages/" + this.package_id)
         .then((response) => {
-          console.log("pack", response);
           this.package = response.data.data;
         });
     },

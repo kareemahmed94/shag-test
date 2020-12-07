@@ -24,7 +24,7 @@
               <v-col md="3" cols="12" style="text-align: center;">
                 <img
                   class="img-border company-logo"
-                  src="https://s3-cdn.shaghalni.com/2018/04/Aman-2-120x120.png"
+                  src="https://shaghalni.s3.eu-central-1.amazonaws.com/2018/04/Aman-2-120x120.png?webp"
                 />
                 <div class="reviews-rate">
                   <img class="rate-star" src="~/assets/img/icons/star-ful.svg" />
@@ -69,7 +69,7 @@
               <v-col md="3" cols="12" style="text-align: center;">
                 <img
                   class="img-border company-logo"
-                  src="https://s3-cdn.shaghalni.com/2018/05/Spinneys-120x120.png"
+                  src="https://shaghalni.s3.eu-central-1.amazonaws.com/2018/05/Spinneys-120x120.png"
                 />
                 <div class="reviews-rate">
                   <img class="rate-star" src="~/assets/img/icons/star-ful.svg" />
@@ -110,7 +110,7 @@
               <v-col md="3" cols="12" style="text-align: center;">
                 <img
                   class="img-border company-logo"
-                  src="https://s3-cdn.shaghalni.com/2018/09/saal-120x120.png"
+                  src="https://shaghalni.s3.eu-central-1.amazonaws.com/2018/09/saal-120x120.png"
                 />
                 <div class="reviews-rate">
                   <img class="rate-star" src="~/assets/img/icons/star-ful.svg" />

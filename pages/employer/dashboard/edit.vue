@@ -212,27 +212,14 @@
                     <label for="category" class="label-form">مجال العمل:</label>
                   </v-col>
                   <v-col md="8" cols="12">
-                    <v-row
-                      v-for="(bc, index) in employer.businessCategoryData"
-                      :key="'bc' + index"
-                    >
+                    <v-row v-for="(bc, index) in employer.businessCategoryData" :key="'bc' + index">
                       <v-col cols="12">
-                        <v-select
-                          dense
-                          :append-outer-icon="
-                            index === 0 ? icons.mdiPlus : icons.mdiClose
-                          "
-                          @click:append-outer="
-                            index === 0
-                              ? add_buss_cat()
-                              : $delete(employer.businessCategoryData, index)
-                          "
-                          :items="business_categories"
-                          v-model="employer.businessCategoryData[index]"
-                          label="مجال العمل"
-                          outlined
-                          item-value="id"
-                          item-text="name_ar"
+                        <v-select dense :append-outer-icon="index === 0 ? icons.mdiPlus : icons.mdiClose"
+                                  @click:append-outer="index === 0 ? add_buss_cat() : $delete(employer.business_category, index)"
+                                  :items="business_categories"
+                                  v-model="employer.business_category[index]"
+                                  label="مجال العمل" outlined
+                                  item-value="id" item-text="name_ar"
                         ></v-select>
                       </v-col>
                     </v-row>
@@ -364,14 +351,14 @@
                             </h5>
                             <div v-for="card in user.employer.tax_card">
                               <a :href="storage_url + card">{{
-                                  card.split("tax_cards/")[1]
+                                card.split("tax_cards/")[1]
                                 }}</a>
                             </div>
                             <div
                               v-for="record in user.employer.commercial_record"
                             >
                               <a :href="storage_url + record">{{
-                                  record.split("commercial_records/")[1]
+                                record.split("commercial_records/")[1]
                                 }}</a>
                             </div>
                           </div>
@@ -459,308 +446,311 @@
   </div>
 </template>
 <script>
-import $ from "jquery";
-import {mdiArrowLeft, mdiArrowRight, mdiClose, mdiPlus} from "@mdi/js";
-import Mobile from "@/components/common/mobile-input";
+  import $ from "jquery";
+  import {mdiArrowLeft, mdiArrowRight, mdiClose, mdiPlus} from "@mdi/js";
+  import Mobile from "@/components/common/mobile-input";
 
-export default {
-  name: "SpeRegistration",
-  components: {
-    Mobile,
-  },
-  head() {
-    return {
-      titleTemplate: "%s - تعديل الحساب",
-    };
-  },
-  data() {
-    return {
-      icons: {
-        mdiArrowLeft,
-        mdiArrowRight,
-        mdiPlus,
-        mdiClose,
-      },
-      storage_url: process.env.StorageUrl,
-      employer: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        job_title: "",
-        gender: "",
-        phone_number: "",
-        password: "",
-        message: "",
-        status: "",
-        avatar: null,
-        birth_date: "1990-01-01",
-        name_en: "",
-        name_ar: "",
-        country_id: "",
-        city_id: "",
-        area_id: "",
+  export default {
+    name: "SpeRegistration",
+    components: {
+      Mobile,
+    },
+    head() {
+      return {
+        titleTemplate: "%s - تعديل الحساب",
+      };
+    },
+    data() {
+      return {
+        icons: {
+          mdiArrowLeft,
+          mdiArrowRight,
+          mdiPlus,
+          mdiClose,
+        },
+        storage_url: process.env.StorageUrl,
+        employer: {
+          first_name: "",
+          last_name: "",
+          email: "",
+          job_title: "",
+          gender: "",
+          phone_number: "",
+          password: "",
+          message: "",
+          status: "",
+          avatar: null,
+          birth_date: "1990-01-01",
+          name_en: "",
+          name_ar: "",
+          country_id: "",
+          city_id: "",
+          area_id: "",
+          logo: null,
+          tax_card: null,
+          commercial_record: null,
+          other_phone_numbers: [],
+          about: "",
+          company_size_id: "",
+          businessCategoryData: ["0"],
+          business_category: [],
+          education_lvl: "",
+          nationality: "",
+          website: "",
+        },
         logo: null,
         tax_card: null,
         commercial_record: null,
-        other_phone_numbers: [],
-        about: "",
-        company_size_id: "",
-        businessCategoryData: ["0"],
-        business_category: [],
-        education_lvl: "",
-        nationality: "",
-        website: "",
+        countries: [],
+        cities: [],
+        areas: [],
+        business_categories: [],
+        company_sizes: [],
+        nationalities: [],
+        menu: false,
+        query: this.$route.query,
+        mockup_dialog: false,
+        date: false,
+        overlay: false,
+        btn_loader: false,
+        show_password: false,
+        message: false,
+        error_message: false,
+        same_as_phone_number: false,
+        error_type: "success",
+        // Employer Data
+        user: this.$auth.user ? this.$auth.user : {},
+        user_data: {},
+        v_loading: false,
+      };
+    },
+    watch: {
+      query() {
       },
-      logo: null,
-      tax_card: null,
-      commercial_record: null,
-      countries: [],
-      cities: [],
-      areas: [],
-      business_categories: [],
-      company_sizes: [],
-      nationalities: [],
-      menu: false,
-      query: this.$route.query,
-      mockup_dialog: false,
-      date: false,
-      overlay: false,
-      btn_loader: false,
-      show_password: false,
-      message: false,
-      error_message: false,
-      same_as_phone_number: false,
-      error_type: "success",
-      // Employer Data
-      user: this.$auth.user ? this.$auth.user : {},
-      user_data: {},
-      v_loading: false,
-    };
-  },
-  watch: {
-    query() {
+      logo() {
+        this.get_logo();
+      },
+      tax_card() {
+        this.get_tax_card();
+      },
+      commercial_record() {
+        this.get_commercial_record();
+      },
     },
-    logo() {
-      this.get_logo();
+    computed: {},
+    mounted() {
+      this.check_query();
     },
-    tax_card() {
-      this.get_tax_card();
-    },
-    commercial_record() {
-      this.get_commercial_record();
-    },
-  },
-  computed: {},
-  mounted() {
-    this.check_query();
-  },
-  methods: {
-    check_query() {
-      if (this.user && this.user.employer) {
-        if (
-          !this.user.employer.tax_card &&
-          !this.user.employer.commercial_record
-        ) {
-          if (this.query.verify && this.query.verify == 1) {
-            this.message = true;
-            this.error_type = "error";
-            this.error_message =
-              "أرسل أوراق الشركة لكي تستطيع الحصول على خدمات شغلني";
-            this.$refs.empPapers.scrollIntoView();
+    methods: {
+      check_query() {
+        if (this.user && this.user.employer) {
+          if (
+            !this.user.employer.tax_card &&
+            !this.user.employer.commercial_record
+          ) {
+            if (this.query.verify && this.query.verify == 1) {
+              this.message = true;
+              this.error_type = "error";
+              this.error_message =
+                "أرسل أوراق الشركة لكي تستطيع الحصول على خدمات شغلني";
+              this.$refs.empPapers.scrollIntoView();
+            }
           }
         }
-      }
-    },
-    employer_data() {
-      let user = this.$auth.user;
-      let emp = user ? this.$auth.user.employer : null;
-      if (emp) {
-        this.employer.first_name = user.name.split(" ")[0]
-          ? user.name.split(" ")[0]
-          : "";
-        this.employer.last_name = user.name.split(" ")[1]
-          ? user.name.split(" ")[1]
-          : "";
-        this.employer.name_ar = emp.name_ar;
-        this.employer.name_en = emp.name_en;
-        this.employer.about = emp.about;
-        this.employer.area_id = emp.area_id;
-        this.employer.country_id = emp.country_id;
-        this.employer.city_id = emp.city_id;
-        this.employer.website = emp.website;
-        this.employer.company_size_id = emp.company_size_id;
-        if (emp.business_categories) {
-          for (let x = 0; x < emp.business_categories.length; x++) {
-            this.employer.business_category.push(emp.business_categories[x]);
+      },
+      employer_data() {
+        let user = this.$auth.user;
+        let emp = user ? this.$auth.user.employer : null;
+        if (emp) {
+          this.employer.first_name = user.name.split(" ")[0]
+            ? user.name.split(" ")[0]
+            : "";
+          this.employer.last_name = user.name.split(" ")[1]
+            ? user.name.split(" ")[1]
+            : "";
+          this.employer.name_ar = emp.name_ar;
+          this.employer.name_en = emp.name_en;
+          this.employer.about = emp.about;
+          this.employer.area_id = emp.area_id;
+          this.employer.country_id = emp.country_id;
+          this.employer.city_id = emp.city_id;
+          if (emp.city_id) {
+            this.getAreas(emp.city_id)
+          }
+          this.employer.website = emp.website;
+          this.employer.company_size_id = emp.company_size_id;
+          if (emp.business_categories) {
+            for (let x = 0; x < emp.business_categories.length; x++) {
+              this.employer.business_category.push(emp.business_categories[x].id);
+            }
           }
         }
-      }
-    },
-    add_phone() {
-      this.other_phone_numbers.push("");
-    },
-    update() {
-      this.btn_loader = true;
-      this.$axios.post("/employer/update", this.employer).then((response) => {
-        this.btn_loader = false;
-        this.message = true;
-        this.error_type = "success";
-        this.error_message = "تم بنجاح";
-        this.$router.push("/employer/dashboard");
-      });
-    },
-    get_logo() {
-      const file = this.logo;
-      const reader = new FileReader();
-      let vm = this;
-      reader.addEventListener(
-        "load",
-        function () {
-          vm.employer.logo = reader.result;
-        },
-        false
-      );
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    },
-    get_tax_card() {
-      const files = this.tax_card;
-      this.employer.tax_card = [];
-      for (let i = 0; i < files.length; i++) {
+      },
+      add_phone() {
+        this.other_phone_numbers.push("");
+      },
+      update() {
+        this.btn_loader = true;
+        this.$axios.post("/employer/update", this.employer).then((response) => {
+          this.btn_loader = false;
+          this.message = true;
+          this.error_type = "success";
+          this.error_message = "تم بنجاح";
+          this.$auth.fetchUser()
+          this.$router.push("/employer/dashboard");
+        });
+      },
+      get_logo() {
+        const file = this.logo;
         const reader = new FileReader();
         let vm = this;
         reader.addEventListener(
           "load",
           function () {
-            vm.employer.tax_card.push(reader.result);
+            vm.employer.logo = reader.result;
           },
           false
         );
-        if (files[i]) {
-          reader.readAsDataURL(files[i]);
+        if (file) {
+          reader.readAsDataURL(file);
         }
-      }
-    },
-    get_commercial_record() {
-      const files = this.commercial_record;
-      this.employer.commercial_record = [];
-      for (let i = 0; i < files.length; i++) {
-        const reader = new FileReader();
-        let vm = this;
-        reader.addEventListener(
-          "load",
-          function () {
-            vm.employer.commercial_record.push(reader.result);
-          },
-          false
-        );
-        if (files[i]) {
-          reader.readAsDataURL(files[i]);
+      },
+      get_tax_card() {
+        const files = this.tax_card;
+        this.employer.tax_card = [];
+        for (let i = 0; i < files.length; i++) {
+          const reader = new FileReader();
+          let vm = this;
+          reader.addEventListener(
+            "load",
+            function () {
+              vm.employer.tax_card.push(reader.result);
+            },
+            false
+          );
+          if (files[i]) {
+            reader.readAsDataURL(files[i]);
+          }
         }
-      }
-    },
-    getCountries() {
-      this.$axios.get("/resource/country").then((response) => {
-        this.countries = response.data;
-      });
-    },
-    getCities() {
-      this.$axios.get("/resource/city").then((response) => {
-        this.cities = response.data;
-      });
-    },
-    getAreas() {
-      this.$axios.get("/resource/area").then((response) => {
-        this.areas = response.data;
-      });
-    },
-    getBusinessCategories(resourceName, type) {
-      this.$axios
-        .get("/resource/businessCategory", {params: {type: type}})
-        .then((response) => {
-          this.business_categories = response.data;
+      },
+      get_commercial_record() {
+        const files = this.commercial_record;
+        this.employer.commercial_record = [];
+        for (let i = 0; i < files.length; i++) {
+          const reader = new FileReader();
+          let vm = this;
+          reader.addEventListener(
+            "load",
+            function () {
+              vm.employer.commercial_record.push(reader.result);
+            },
+            false
+          );
+          if (files[i]) {
+            reader.readAsDataURL(files[i]);
+          }
+        }
+      },
+      getCountries() {
+        this.$axios.get("/resource/country").then((response) => {
+          this.countries = response.data;
         });
-    },
-    getCompanySizes(resourceName, type) {
-      this.$axios
-        .get("/resource/companySize", {params: {type: type}})
-        .then((response) => {
-          this.company_sizes = response.data;
-        });
-    },
-    add_buss_cat() {
-      this.employer.businessCategoryData.push("");
-    },
-    /**
-     * Handle relation between areas dropdowns
-     *
-     *@param {object} dropdown
-     */
-    countryUpdateSelect() {
-      if (this.country !== 0) {
+      },
+      getCities() {
         this.$axios.get("/resource/city").then((response) => {
-          this.cities = response.data.filter(
-            (city) => city.country_id == this.country
-          );
-          this.areas = [];
+          this.cities = response.data;
         });
-      }
-    },
-    /**
-     * Handle relation between areas dropdowns
-     *
-     * @param {object} dropdown
-     */
-    cityUpdateSelect() {
-      if (this.city !== 0) {
-        this.$axios.get("/resource/area").then((response) => {
-          this.areas = response.data.filter(
-            (area) => area.city_id == this.city
-          );
+      },
+      getAreas(city_id) {
+        this.$axios.get("/resource/area?city_id="+city_id).then((response) => {
+          this.areas = response.data;
         });
-      }
+      },
+      getBusinessCategories(resourceName, type) {
+        this.$axios
+          .get("/resource/businessCategory", {params: {type: type}})
+          .then((response) => {
+            this.business_categories = response.data;
+          });
+      },
+      getCompanySizes(resourceName, type) {
+        this.$axios
+          .get("/resource/companySize", {params: {type: type}})
+          .then((response) => {
+            this.company_sizes = response.data;
+          });
+      },
+      add_buss_cat() {
+        this.employer.businessCategoryData.push("");
+      },
+      /**
+       * Handle relation between areas dropdowns
+       *
+       *@param {object} dropdown
+       */
+      countryUpdateSelect() {
+        if (this.country !== 0) {
+          this.$axios.get("/resource/city").then((response) => {
+            this.cities = response.data.filter(
+              (city) => city.country_id == this.country
+            );
+            this.areas = [];
+          });
+        }
+      },
+      /**
+       * Handle relation between areas dropdowns
+       *
+       * @param {object} dropdown
+       */
+      cityUpdateSelect() {
+        if (this.city !== 0) {
+          this.$axios.get("/resource/area").then((response) => {
+            this.areas = response.data.filter(
+              (area) => area.city_id == this.city
+            );
+          });
+        }
+      },
     },
-  },
-  created() {
-    this.employer_data();
-    this.getCountries();
-    this.getCities();
-    this.getAreas();
-    this.getBusinessCategories();
-    this.getCompanySizes();
-  },
-};
+    created() {
+      this.employer_data();
+      this.getCountries();
+      this.getCities();
+      this.getBusinessCategories();
+      this.getCompanySizes();
+    },
+  };
 </script>
 
 
 <style scoped>
-.v-stepper__header {
-  box-shadow: none !important;
-}
+  .v-stepper__header {
+    box-shadow: none !important;
+  }
 
-.v-card {
-  overflow-x: hidden;
-}
+  .v-card {
+    overflow-x: hidden;
+  }
 
-.form-register {
-  text-align: right;
-  margin-bottom: 50px;
-}
+  .form-register {
+    text-align: right;
+    margin-bottom: 50px;
+  }
 
-.clients {
-  background-image: url("~assets/bg-mail-1.jpg");
-  background-size: 100% 100%;
-}
+  .clients {
+    background-image: url("~assets/bg-mail-1.jpg");
+    background-size: 100% 100%;
+  }
 
-.label-form {
-  width: auto !important;
-}
+  .label-form {
+    width: auto !important;
+  }
 
-input {
-  font-size: 20px;
-  width: auto;
-  line-height: normal;
-  padding: 8px;
-}
+  input {
+    font-size: 20px;
+    width: auto;
+    line-height: normal;
+    padding: 8px;
+  }
 </style>

@@ -1055,7 +1055,6 @@ export default {
     },
     JS_data() {
       let user = this.$auth.user;
-      console.log(user)
 
       let JS = user ? this.$auth.user.job_seeker : null;
       if (JS) {

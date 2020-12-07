@@ -184,7 +184,9 @@
       </v-row>
       <v-divider></v-divider>
     </div>
-    <clients_slider></clients_slider>
+    <div style="margin-left: 10%!important;margin-right: 10%!important;">
+      <clients_slider></clients_slider>
+    </div>
   </div>
 </template>
 <script>
@@ -229,7 +231,7 @@
         slider: {},
         sample_slider: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         rates: [1, 2, 3, 4, 5],
-        thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+        thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
         storage_url: process.env.StorageUrl,
         message: "Message ",
         searchJobType: "",
@@ -246,15 +248,14 @@
         "Access-Control-Allow-Origin",
         "http://127.0.0.1:8000"
       );
-      this.is_loaded = 1;
       await this.getHomeJobs();
       await this.getSpecialJobs();
       await this.getReviews();
       await this.getJobType();
       await this.$forceUpdate();
     },
-    watch: {},
 
+    watch: {},
     methods: {
       getJobType() {
         this.$axios.get("/resource/jobType").then((response) => {

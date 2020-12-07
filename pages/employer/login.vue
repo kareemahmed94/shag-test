@@ -75,7 +75,7 @@ export default {
       slider: {},
       sample_slider: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       rates: [1, 2, 3, 4, 5],
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       storage_url: process.env.StorageUrl,
       message: "Message ",
       searchJobType: "",

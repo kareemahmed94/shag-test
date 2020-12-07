@@ -7,7 +7,7 @@
     v-if="!$device.isMobileOrTablet"
   >
     <div v-if="status == 1">
-      <img src="~/assets/img/loader.png" style="width: 100%" />
+      <img src="~/assets/img/loader.png?webp" style="width: 100%" />
     </div>
     <div v-else-if="status == 2">
       <div class="job-holder" v-for="(job_seeker) in job_seekers" :key="job_seeker.id">
@@ -16,9 +16,9 @@
             <div class="logo-mask"
               :style="`${$device.isMobile ? 'width: 100%; margin-top: 0;' : ''}`">
               <v-img aspect-ratio="1"
-                :src="job_seeker.avatar ? storage_url + job_seeker.avatar : thumb_avatar"
+                :src="job_seeker.avatar ? storage_url + job_seeker.avatar+'?webp' : thumb_avatar+'?webp'"
               ></v-img>
-                <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
             </div>
           </v-col>
           <v-col cols="8" md="7" sm="12">
@@ -123,9 +123,9 @@
             <div class="logo-mask ml-auto mr-auto">
               <v-img
                 aspect-ratio="1"
-                :src="job_seeker.avatar ? storage_url + job_seeker.avatar : thumb_avatar"
+                :src="job_seeker.avatar ? storage_url + job_seeker.avatar+'?webp' : thumb_avatar+'?webp'"
               ></v-img>
-                <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
             </div>
           </v-col>
         </v-row>

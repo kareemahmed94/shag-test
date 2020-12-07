@@ -3,7 +3,7 @@
     <h2>أكبر شركات مصر تستخدم شغلني</h2>
     <VueSlickCarousel v-bind="clientsOptions" ref="slick" v-if="clients_status == 0">
       <div v-for="x in sample_slider" :key="'s'+x">
-        <img src="~/assets/img/slider-loader.png" width="200" />
+        <img src="~/assets/img/slider-loader.png?webp" width="200" />
       </div>
     </VueSlickCarousel>
     <VueSlickCarousel v-bind="clientsOptions" ref="slick" v-else>
@@ -11,7 +11,7 @@
         <div>
           <div class="clients-slider-content ml-auto mr-auto">
             <nuxt-link :to="'/employer/'+our_client.slug">
-              <img :src="storage_url + our_client.logo" />
+              <img :src="storage_url + our_client.logo+'?webp'" />
             </nuxt-link>
           </div>
         </div>

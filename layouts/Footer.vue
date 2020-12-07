@@ -15,7 +15,7 @@
           <div class="col-md-3 mt-md-0 mt-3 text-right col-md-offset-right-1">
 
             <!-- Content -->
-            <img alt="Vue logo" class="logo-nav" width="100" src="~/assets/logo-blue.png"
+            <img alt="Vue logo" class="logo-nav" width="100" :src="storage_url+'0TBfcCm5KVU8HOQlOW3NZJPDnFBqdGnUB1aa32TE.png?webp'"
                  style="padding-bottom: 10px">
             <p class="footer-desc">موقع شغلني ليس شركة توظيف ويقدم جميع خدماته لراغبي العمل مجاناً دون دفع أي رسوم. </p>
           </div>

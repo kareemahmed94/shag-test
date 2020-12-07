@@ -237,7 +237,6 @@
   </div>
 </template>
 <script>
-
   import verify_modal from "~/components/common/verifyModal";
   import personal from "~/components/job_seeker/register/personal";
   import extra from "~/components/job_seeker/register/extra";

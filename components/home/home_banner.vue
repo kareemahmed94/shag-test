@@ -146,7 +146,6 @@
         });
       },
       filter_filters(model, level) {
-        console.log(this.city , this.title)
         this.city ? this.form.searchCity = [this.city] : null
         this.title ? this.form.searchCat = [this.title] : null
         let data = this.form;
@@ -155,7 +154,6 @@
         data.filterLevel = level;
         this.$axios.get("/filter/jobs", { params: data }).then((response) => {
           let data = response.data;
-          console.log(data.cities)
           this.categories = data.categories ? data.categories : this.categories;
           this.cities = data.cities ? data.cities : this.cities;
           this.isLoadingTitle = false

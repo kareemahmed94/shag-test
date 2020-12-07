@@ -13,7 +13,7 @@
                     <v-img
                       :src="employer.logo ? storage_url + employer.logo : thumb_logo"
                     ></v-img>
-                      <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                      <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
                   </v-avatar>
                 </v-row>
                 <v-divider class="mb-0"></v-divider>
@@ -336,7 +336,7 @@
                   aspect-ratio="1"
                   :src="employer.logo ? storage_url + employer.logo : thumb_logo"
                 ></v-img>
-                  <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                  <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
               </div>
               <v-divider></v-divider>
               <div
@@ -723,7 +723,7 @@ export default {
       loggedIn: this.$auth.loggedIn,
       more_cat: 0,
       related_job_seekers_loaded: 0,
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       storage_url: process.env.StorageUrl,
       related_jobs: {},
       form: {

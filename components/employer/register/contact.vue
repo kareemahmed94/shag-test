@@ -117,6 +117,8 @@
                   :rules="[
                     (v) => !!v || 'رقم الموبايل مطلوب',
                     (v) => !isNaN(v) || 'يجب أن يكون أرقام',
+                    (v) => v.length === 11 || 'يجب أن يكون رقم صحيح',
+                    (v) => validatePhone(v) || 'يجب أن يكون رقم صحيح',
                   ]"
                   label="رقم الموبايل"
                   required
@@ -295,6 +297,9 @@ export default {
     $("body").css("overflow", "auto");
   },
   methods: {
+    validatePhone(v) {
+      return v.startsWith('012') || v.startsWith('011') || v.startsWith('010') || v.startsWith('015')
+    },
     getOurClients() {
       this.$axios.get("/employer/our_clients").then((response) => {
         this.our_clients = response.data.data;

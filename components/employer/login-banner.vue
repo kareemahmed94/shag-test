@@ -4,7 +4,7 @@
       <v-row>
         <v-col md="12" cols="12">
           <nuxt-link to="/">
-            <img src="~/assets/logo.png" />
+            <img :src="storage_url+'0TBfcCm5KVU8HOQlOW3NZJPDnFBqdGnUB1aa32TE.png?webp'" />
           </nuxt-link>
         </v-col>
       </v-row>
@@ -182,7 +182,6 @@ export default {
       }
     },
     show_message(response) {
-      console.log(response);
       this.message = true;
       this.error_type = response.data.error_code == 200 ? "success" : "error";
       this.error_message = response.data.msg;

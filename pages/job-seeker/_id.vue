@@ -56,7 +56,7 @@
         <div class="col-md-9">
           <!-- Shaghalni Logo -->
           <div style="position: absolute; top: 0; left: 12px">
-            <img src="~/assets/img/shag-badge.png" width="140"/>
+            <img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" width="140"/>
           </div>
 
           <div class="job-holder">
@@ -391,7 +391,7 @@
                           "
                           max-width="150"
                         ></v-img>
-                        <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                        <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
                       </v-col>
                       <v-col md="7" class="job-title">
                         <v-row>
@@ -510,7 +510,7 @@
         <v-col cols="11" class="ml-auto mr-auto">
           <!-- Shaghalni Logo -->
           <div style="position: absolute; top: 0; left: 12px">
-            <img src="~/assets/img/shag-badge.png" width="140"/>
+            <img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" width="140"/>
           </div>
 
           <div class="job-holder">
@@ -870,7 +870,7 @@
                         "
                         max-width="150"
                       ></v-img>
-                      <!-- lazy-src="https://s3-cdn.shaghalni.com/shaghalni_icon.png" -->
+                      <!-- lazy-src="https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png" -->
                     </v-col>
                     <v-col cols="6" class="text-right job-details-title">
                       <span class="job-title" style="padding: 0">الاسم:</span>
@@ -1061,7 +1061,7 @@ export default {
       more_cat: 0,
       sub_date_status: false,
       related_job_seekers_loaded: 0,
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       storage_url: process.env.StorageUrl,
       related_jobs: {},
       form: {
@@ -1146,7 +1146,6 @@ export default {
     },
     get_related_job_seeker(job_seeker) {
       $("body").scrollTop(1000);
-      console.log(job_seeker);
       this.$router.push("/job-seeker/" + job_seeker.job_seeker_id);
       this.$axios
         .get("/job_seeker/show/" + job_seeker.job_seeker_id)

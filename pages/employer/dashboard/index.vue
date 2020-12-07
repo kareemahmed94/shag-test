@@ -968,7 +968,7 @@ export default {
       week_jobs_bar: 60,
       CV_bar: 90,
       employer: {},
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       thumb_avatar:
         "https://www.yourfirstpatient.com/assets/default-user-avatar-thumbnail@2x-ad6390912469759cda3106088905fa5bfbadc41532fbaa28237209b1aa976fc9.png",
       storage_url: process.env.StorageUrl,
@@ -993,7 +993,6 @@ export default {
             (package_details.job_posts_number / 100) *
               package_details.job_posts_number_used
           );
-        console.log(package_details);
         this.job_seekers_left =
           100 -
           parseInt(
@@ -1007,10 +1006,6 @@ export default {
             (package_details.unlock_profiles_num_used * 100) /
               package_details.unlock_profiles_num
           );
-        console.log(
-          "hi",
-          `${this.unlock_profiles_left} = ${package_details.unlock_profiles_num} : ${package_details.unlock_profiles_num_used}`
-        );
       }
     },
   },

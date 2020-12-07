@@ -802,7 +802,7 @@ export default {
       categories: [],
       applications: [],
       job_seeker: {},
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       thumb_avatar:
         "https://www.yourfirstpatient.com/assets/default-user-avatar-thumbnail@2x-ad6390912469759cda3106088905fa5bfbadc41532fbaa28237209b1aa976fc9.png",
       storage_url: process.env.StorageUrl,

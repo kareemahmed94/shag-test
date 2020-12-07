@@ -995,7 +995,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .employer-login-page-holder {
-  background-image: url("../img/login_cover.jpg") !important;
+  background-image: url("https://shaghalni.s3.eu-central-1.amazonaws.com/KAqRUV2G66Zee1Xv6TT6qsK0fTrfuOd764bR9DmI.jpeg?webp") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
@@ -1008,7 +1008,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .employer-landing-page-holder {
-  background-image: url("../landing.png") !important;
+  background-image: url("https://shaghalni.s3.eu-central-1.amazonaws.com/rVV4mhZxGgOUfWMZJXBUol2DNQ9KhfFwhow0MVMi.png?webp") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
@@ -1018,7 +1018,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .home-page-holder {
-  background-image: url("../img/home-cover.png") !important;
+  background-image: url("https://shaghalni.s3.eu-central-1.amazonaws.com/BttWH81iNFWNiChYtIbKEZNeh32MUIFIoON02Ywn.png?webp") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
@@ -1029,7 +1029,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .job-page-holder {
-  background-image: url("../../assets/job-banner.jpeg");
+  background-image: url("https://shaghalni.s3.eu-central-1.amazonaws.com/nK3vPKTxbvVtLpQlA1OnZ7rD5hMjE0iVMPQ8QaRO.jpeg?webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1040,7 +1040,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .job-seeker-page-holder {
-  background-image: url("../../assets/job-banner.jpeg");
+  background-image: url("https://shaghalni.s3.eu-central-1.amazonaws.com/nK3vPKTxbvVtLpQlA1OnZ7rD5hMjE0iVMPQ8QaRO.jpeg?webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3178,7 +3178,7 @@ input[type="checkbox"]::selection {
 }
 
 .not-found .place-holder {
-  background-image: url("../img/404.png") !important;
+  background-image: url("https://shaghalni.s3.eu-central-1.amazonaws.com/e77lspNWs5Ja8E5zzLcTCaVtWY5zRUyMgxrjHOfn.png?webp") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;

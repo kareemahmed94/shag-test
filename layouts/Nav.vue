@@ -22,7 +22,7 @@
           <img
             alt="logo"
             width="100"
-            src="~/assets/logo-blue.png"
+            :src="storage_url+'0TBfcCm5KVU8HOQlOW3NZJPDnFBqdGnUB1aa32TE.png?webp'"
             class="logo-nav"
           />
         </nuxt-link>
@@ -121,7 +121,7 @@
           <img
             alt="logo"
             width="150"
-            src="~/assets/logo-blue.png"
+            :src="storage_url+'0TBfcCm5KVU8HOQlOW3NZJPDnFBqdGnUB1aa32TE.png?webp'"
             class="logo-nav"
           />
         </nuxt-link>
@@ -203,7 +203,7 @@
                 aspect-ratio="1"
                 max-width="100"
                 position="center"
-                :src="avatar_url ? avatar_url : thumb_avatar"
+                :src="avatar_url ? avatar_url+'?webp' : thumb_avatar+'?webp'"
               ></v-img>
             </div>
             <v-list class="nav-menu">

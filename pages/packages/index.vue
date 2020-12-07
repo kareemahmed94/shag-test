@@ -51,10 +51,10 @@
                   md="11"
                   cols="11"
                   class="ml-auto mr-auto package-title text-center d-flex flex-column align-items-center justify-content-around"
-                  :style="{ 'background-color': colors[index] }"
+                  :style="{ 'background-color': employer_package.color }"
                 >
                   <span>{{ employer_package.name_ar }}</span>
-                  <span style="font-size: 12px">{{ subtitle[index] }}</span>
+                  <span style="font-size: 12px">{{ employer_package.sub_title_ar }}</span>
                 </v-col>
               </v-row>
 
@@ -318,7 +318,7 @@
                     <div class="col-lg-3" style="text-align: center">
                       <img
                         class="img-border company-logo"
-                        src="https://s3-cdn.shaghalni.com/2018/04/Aman-2-120x120.png"
+                        src="https://shaghalni.s3.eu-central-1.amazonaws.com/2018/04/Aman-2-120x120.png"
                       />
                       <div class="reviews-rate">
                         <img
@@ -379,7 +379,7 @@
                     <div class="col-lg-3" style="text-align: center">
                       <img
                         class="img-border company-logo"
-                        src="https://s3-cdn.shaghalni.com/2018/05/Spinneys-120x120.png"
+                        src="https://shaghalni.s3.eu-central-1.amazonaws.com/2018/05/Spinneys-120x120.png"
                       />
                       <div class="reviews-rate">
                         <img
@@ -432,7 +432,7 @@
                     <div class="col-lg-3" style="text-align: center">
                       <img
                         class="img-border company-logo"
-                        src="https://s3-cdn.shaghalni.com/2018/09/saal-120x120.png"
+                        src="https://shaghalni.s3.eu-central-1.amazonaws.com/2018/09/saal-120x120.png"
                       />
                       <div class="reviews-rate">
                         <img
@@ -714,7 +714,7 @@ export default {
       is_verified: false,
       confirm_payment_dialog: false,
       rates: [1, 2, 3, 4, 5],
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       storage_url: process.env.StorageUrl,
       message: "Message ",
       iframe_url: "",

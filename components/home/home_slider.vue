@@ -3,7 +3,7 @@
     <div class="home-slider" ref="homeSlider">
       <VueSlickCarousel v-bind="slickOptions" ref="slick" v-if="home_status == 1">
         <div v-for="x in sample_slider" :key="'s'+x">
-          <img src="~/assets/img/slider-loader.png" width="200" />
+          <img src="~/assets/img/slider-loader.png?webp" width="200" />
         </div>
       </VueSlickCarousel>
       <VueSlickCarousel v-bind="slickOptions" ref="slick" v-else>

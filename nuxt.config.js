@@ -1,11 +1,13 @@
 import colors from 'vuetify/es5/util/colors'
+
 const dev = process.env.NODE_ENV !== 'production'
 
 export default {
-  // Target (https://go.nuxtjs.dev/config-target)
-  target: 'server',
-
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+  telemetry: false,
+  debug: true,
+  /*
+  ** Headers of the page
+  */
   head: {
     title: 'شغلني' || '',
     meta: [
@@ -44,7 +46,7 @@ export default {
       {
         hid: "twitter:image",
         name: "twitter:image",
-        content:  "https://i.ibb.co/ZfBByL2/Shaghalni-Preview-Image.png",
+        content: "https://i.ibb.co/ZfBByL2/Shaghalni-Preview-Image.png",
       },
       {
         hid: "og:site_name",
@@ -74,18 +76,20 @@ export default {
       {
         hid: "og:image",
         name: "og:image",
-        content:  "https://i.ibb.co/ZfBByL2/Shaghalni-Preview-Image.png",
+        content: "https://i.ibb.co/ZfBByL2/Shaghalni-Preview-Image.png",
       },
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: 'https://i.ibb.co/T08c7RK/shaghalni-fav.png'},
-      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap'},
-      {rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'}
     ],
   },
+  /*
+  ** Customize the progress-bar color
+  */
   loading: {color: '#fff'},
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
+  /*
+  ** Global CSS
+  */
   css: [
     "~/assets/css/theme.css",
     "~/assets/css/custom.css",
@@ -93,27 +97,26 @@ export default {
     "~/assets/css/bootstrap.css",
     'vue-slick-carousel/dist/vue-slick-carousel.css'
   ],
-  
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  /*
+  ** Plugins to load before mounting the App
+  */
   plugins: [
     {src: './plugins/vue-slick-carousel.js'},
-    {src: '~plugins/hotjar.js', mode: 'client'},
-    {src: '~plugins/ga.js', mode: 'client'},
-    { src: '~/plugins/amplify.js', mode: 'client' }
-
+    {src: '~plugins/hotjar.js', mode: 'client'}
   ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+  /*
+  ** Nuxt.js dev-modules
+  */
   buildModules: [
     '@nuxtjs/vuetify',
+    '@aceforth/nuxt-optimized-images',
   ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
+  /*
+  ** Nuxt.js modules
+  */
   modules: [
     '@nuxtjs/gtm',
+    ['@nuxtjs/google-gtag', { id: 'UA-57896372-1' }],
     ['nuxt-facebook-pixel-module', {
       /* module options */
       track: 'PageView',
@@ -146,9 +149,35 @@ export default {
     // }]
   ],
   gtm: {
-    id: 'GTM-TM8ZL85', // Used as fallback if no runtime config is provided
+    id: 'GTM-T377PM8', // Used as fallback if no runtime config is provided
   },
-
+  optimizedImages: {
+    inlineImageLimit: 500,
+    imagesName: ({dev}) => dev ? '[path][name][hash:optimized].[ext]' : 'img/[contenthash:7].[ext]',
+    responsiveImagesName: ({dev}) => dev ? '[path][name]--[width][hash:optimized].[ext]' : 'img/[contenthash:7]-[width].[ext]',
+    handleImages: ['jpg', 'jpeg', 'png', 'svg', 'webp', 'gif'],
+    optimizeImages: true,
+    optimizeImagesInDev: false,
+    defaultImageLoader: 'img-loader',
+    mozjpeg: {
+      quality: 80,
+    },
+    optipng: {
+      optimizationLevel: 3,
+    },
+    pngquant: false,
+    gifsicle: {
+      interlaced: true,
+      optimizationLevel: 3,
+    },
+    svgo: {
+      // enable/disable svgo plugins here
+    },
+    webp: {
+      preset: 'default',
+      quality: 75,
+    },
+  },
   toast: {
     position: 'top-center',
     register: [ // Register custom toasts
@@ -162,13 +191,15 @@ export default {
     ]
   },
 
-  // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
+  /*
+   ** See https://axios.nuxtjs.org/options
+   */
   axios: {
     baseURL: dev ? process.env.BASE_URL || "http://127.0.0.1:8000/api/" : process.env.BASE_URL || "https://api.shaghalni.com/api/",
   },
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
-    StorageUrl: process.env.StorageUrl || 'https://s3-cdn.shaghalni.com/'
+    StorageUrl: process.env.StorageUrl || 'https://shaghalni.s3.eu-central-1.amazonaws.com/'
   },
   auth: {
     redirect: false,
@@ -222,8 +253,9 @@ export default {
       }
     }
   },
-
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  /*
+  ** Build configuration
+  */
   build: {
     transpile: ['@nuxtjs/auth'],
     /*

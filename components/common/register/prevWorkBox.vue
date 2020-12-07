@@ -135,7 +135,6 @@ export default {
         this.$refs.to_menu.save("حتى الآن");
       } else {
         this.prevExperienceData.to = "";
-        console.log(this.prevExperienceData.to);
         this.show_to_date = true;
       }
     },

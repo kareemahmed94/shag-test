@@ -55,7 +55,7 @@
             <div class="job-holder">
               <v-row>
                 <div style="position: absolute; top: 0; left: 12px">
-                  <img src="~/assets/img/shag-badge.png" width="140" />
+                  <img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" width="140" />
                 </div>
                 <v-col md="3">
                   <div
@@ -71,7 +71,7 @@
                           ? storage_url + job.employer_logo
                           : thumb_logo
                       "
-                      onerror="javascript:this.src='https://s3-cdn.shaghalni.com/shaghalni_icon.png'"
+                      onerror="javascript:this.src='https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png'"
                     ></v-img>
                   </div>
                 </v-col>
@@ -405,7 +405,7 @@
                       ? storage_url + related_job.logo
                       : thumb_logo
                   "
-                  onerror="javascript:this.src='https://s3-cdn.shaghalni.com/shaghalni_icon.png'"
+                  onerror="javascript:this.src='https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png'"
                 />
                 <v-divider></v-divider>
                 <div
@@ -471,7 +471,7 @@
             <div class="job-holder">
               <v-row>
                 <div style="position: absolute; top: 0; left: 12px">
-                  <img src="~/assets/img/shag-badge.png" width="140" />
+                  <img :src="storage_url+'Hq1EfAk8OBWqtbxDgtivRPPJpNStw5NGAmSzmTNP.png'" width="140" />
                 </div>
                 <v-col cols="12">
                   <div class="logo-mask ml-auto mr-auto">
@@ -482,7 +482,7 @@
                           ? storage_url + job.employer_logo
                           : thumb_logo
                       "
-                      onerror="javascript:this.src='https://s3-cdn.shaghalni.com/shaghalni_icon.png'"
+                      onerror="javascript:this.src='https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png'"
                     ></v-img>
                   </div>
                 </v-col>
@@ -820,7 +820,7 @@
                           ? storage_url + related_job.logo
                           : thumb_logo
                       "
-                      onerror="javascript:this.src='https://s3-cdn.shaghalni.com/shaghalni_icon.png'"
+                      onerror="javascript:this.src='https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png'"
                     />
                     <v-divider></v-divider>
                     <div
@@ -1081,7 +1081,7 @@ export default {
       loggedIn: this.$auth.loggedIn,
       more_cat: 0,
       relatedJobs_loaded: 0,
-      thumb_logo: "https://s3-cdn.shaghalni.com/shaghalni_icon.png",
+      thumb_logo: "https://shaghalni.s3.eu-central-1.amazonaws.com/shaghalni_icon.png",
       storage_url: process.env.StorageUrl,
       related_jobs: {},
       form: {

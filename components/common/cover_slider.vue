@@ -1,26 +1,8 @@
 <template>
   <div class="slider-cover">
     <VueSlickCarousel v-bind="settings" ref="slick">
-      <div class="img-wrapper">
-        <img src="~/assets/img/pics/banner-7.jpg" />
-      </div>
-      <div class="img-wrapper">
-        <img src="~/assets/img/pics/banner-6.jpg" />
-      </div>
-      <div class="img-wrapper">
-        <img src="~/assets/img/pics/banner-5.jpg" />
-      </div>
-      <div class="img-wrapper">
-        <img src="~/assets/img/pics/banner-3.jpg" />
-      </div>
-      <div class="img-wrapper">
-        <img src="~/assets/img/pics/banner-1.jpg" />
-      </div>
-      <div class="img-wrapper">
-        <img src="~/assets/img/pics/banner-2.jpg" />
-      </div>
-      <div class="img-wrapper">
-        <img src="~/assets/img/pics/banner-8.jpg" />
+      <div class="img-wrapper" v-for="image in images" :key="image">
+        <img :src="storage_url+image+'?webp'" />
       </div>
     </VueSlickCarousel>
   </div>
@@ -30,6 +12,8 @@ export default {
   name: "cover_slider",
   data() {
     return {
+      storage_url: process.env.StorageUrl,
+      images: ['3wRNPVXAbJQacWm7pQf89MIA2aUmnA4Tstfh4TS5.jpeg','J5lw0PkJSQMIzW8c1eouPnrwpJMwQuIrmVP8NDzV.jpeg','10UYnDoZAK2yOvs6IXe9Q11z1rS47qq2fqc2KAqC.jpeg','8JcIkBhyZuSdvx8xYA4q7pVdsR0Lhi2xfcdIy3JW.jpeg','2ofkQxbobp7o2V1a5v68hIQPRaAHPYZgGEkbJoCQ.jpeg','Muf9M6oECU9zzxNz70Tnh25kB3liUfHNuiQpPVvC.jpeg','dnrTJfX32jkFAz2LY2F1RHTfUyd0R1ARx4COIBx1.jpeg','YHFHANEJN5prgEdl8mI2Wy2LheaDbDnBNjQtJ2G2.jpeg'],
       settings: {
         centerMode: true,
         arrows: false,

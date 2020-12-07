@@ -13,7 +13,7 @@
           <div class="close-login-modal" @click="close_modal">×</div>
           <img
             alt="Shaghalni logo"
-            src="~/assets/logo.png"
+            src="~/assets/logo.png?webp"
             class="logo-white ml-auto mr-auto"
           />
         </v-col>
@@ -192,7 +192,6 @@ export default {
       }
     },
     show_message(response) {
-      console.log(response);
       this.message = true;
       this.error_type = response.data.error_code == 200 ? "success" : "error";
       this.error_message = response.data.msg;
